@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  background: linear-gradient(45deg, #000000, #1a001a);
+  font-family: Arial, sans-serif;
+  text-align: center;
+  color: white;
+  transition: background 3s;
+}
+
+.container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  padding: 20px;
+}
+
+img {
+  width: 70%;
+  max-width: 280px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px red;
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 16px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.message {
+  font-size: 24px;
+  margin-top: 15px;
+  color: pink;
+  min-height: 30px;
+}
+
+.countdown {
+  margin-top: 10px;
+  font-size: 14px;
+  color: lightpink;
+}
+
+/* Popup */
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ff4d6d;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px white;
+  z-index: 100;
+}
+
+/* Floating emoji */
+.emoji {
+  position: absolute;
+  font-size: 25px;
+  animation: float 8s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh) rotate(0deg); }
+  to { transform: translateY(-10vh) rotate(360deg); }
+}
+
+/* Stars */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.3; }
+  to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <img src="ourphoto.jpg" alt="Our Photo">
+  <br>
+  <button onclick="startLove()">▶ Play</button>
+  <div class="message" id="loveMsg"></div>
+  <div class="countdown" id="timer"></div>
+  <button onclick="showPopup()">💍 Will you always be mine?</button>
+</div>
+
+<div class="popup" id="popupBox">
+  <h2>I Promise to Love You Forever ❤️</h2>
+</div>
+
+<audio id="song">
+  <source src="heyshona.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* Start everything */
+function startLove() {
+  document.getElementById("song").play();
+  typeText("You Are My Forever Person ❤️");
+  changeBackground();
+}
+
+/* Typing */
+function typeText(text) {
+  let i = 0;
+  const speed = 80;
+  const msg = document.getElementById("loveMsg");
+  msg.innerHTML = "";
+  function typing() {
+    if (i < text.length) {
+      msg.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typing, speed);
+    }
+  }
+  typing();
+}
+
+/* Countdown */
+const loveDate = new Date("2024-01-01");
+function updateTimer() {
+  const now = new Date();
+  const diff = now - loveDate;
+  const days = Math.floor(diff / (1000*60*60*24));
+  const hours = Math.floor((diff / (1000*60*60)) % 24);
+  const minutes = Math.floor((diff / (1000*60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+  document.getElementById("timer").innerHTML =
+    "Together for: " + days + " days " +
+    hours + "h " + minutes + "m " + seconds + "s 💕";
+}
+setInterval(updateTimer, 1000);
+
+/* Popup */
+function showPopup() {
+  document.getElementById("popupBox").style.display = "block";
+}
+
+/* Floating roses */
+function createEmoji() {
+  const emoji = document.createElement("div");
+  emoji.classList.add("emoji");
+  emoji.innerHTML = Math.random() > 0.5 ? "🌹" : "❤️";
+  emoji.style.left = Math.random() * 100 + "vw";
+  emoji.style.animationDuration = (5 + Math.random() * 5) + "s";
+  document.body.appendChild(emoji);
+  setTimeout(() => { emoji.remove(); }, 8000);
+}
+setInterval(createEmoji, 300);
+
+/* Stars */
+for (let i = 0; i < 80; i++) {
+  const star = document.createElement("div");
+  star.classList.add("star");
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.top = Math.random() * 100 + "vh";
+  document.body.appendChild(star);
+}
+
+/* Color changing background */
+function changeBackground() {
+  const colors = [
+    "linear-gradient(45deg,#000000,#330033)",
+    "linear-gradient(45deg,#1a001a,#660033)",
+    "linear-gradient(45deg,#000000,#99004d)"
+  ];
+  let i = 0;
+  setInterval(() => {
+    document.body.style.background = colors[i % colors.length];
+    i++;
+  }, 4000);
+}
+
+</script>
+
+</body>
+</html>
