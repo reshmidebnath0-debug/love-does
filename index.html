@@ -75,9 +75,9 @@ margin:10px;
 
 <div id="question">
 <button onclick="nextPage()">YES</button>
-<button onclick="changeText(this)">Option A</button>
-<button onclick="changeText(this)">Option B</button>
-<button onclick="changeText(this)">Option D</button>
+<button onclick="changeText(this)">offcourse</button>
+<button onclick="changeText(this)">obviously</button>
+<button onclick="changeText(this)">absolutely my jaanu</button>
 </div>
 
 <h3 id="countdown"></h3>
@@ -87,7 +87,7 @@ margin:10px;
 <!-- SECOND PAGE -->
 <div id="second" class="hidden">
 
-<h2>I Love You Forever ❤️</h2>
+<h1>I Love You Forever ❤️</h1>
 <h3>You Are My Everything 💕</h3>
 
 <button onclick="showPhotos()">Click Our First Selfie</button>
@@ -110,7 +110,7 @@ margin:10px;
 
 // PASSWORD
 function checkPass(){
-if(document.getElementById("pass").value=="iloveyou"){
+if(document.getElementById("pass").value=="sayantan"){
 document.getElementById("login").classList.add("hidden");
 document.getElementById("main").classList.remove("hidden");
 heartBurst();
@@ -172,7 +172,7 @@ document.body.appendChild(heart);
 function miniLove(){
 for(let i=0;i<20;i++){
 let text=document.createElement("div");
-text.className="miniLove";
+text.className="MY Love";
 text.innerHTML="Mini Love 💕";
 text.style.left=Math.random()*100+"vw";
 text.style.top=Math.random()*100+"vh";
@@ -184,3 +184,4 @@ document.body.appendChild(text);
 
 </body>
 </html>
+
